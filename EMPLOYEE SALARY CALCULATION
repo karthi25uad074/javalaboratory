@@ -1,0 +1,148 @@
+import java.util.Scanner;
+
+// Base Class
+class Employee {
+    String empName;
+    int empId;
+    String address;
+    String mailId;
+    String mobileNo;
+    double basicPay;
+
+    Employee(String name, int id, String addr, String mail, String mobile, double bp) {
+        empName = name;
+        empId = id;
+        address = addr;
+        mailId = mail;
+        mobileNo = mobile;
+        basicPay = bp;
+    }
+
+    void calculateSalary(double daPer, double hraPer, double pfPer, double staffPer) {
+        double DA = basicPay * daPer / 100;
+        double HRA = basicPay * hraPer / 100;
+        double PF = basicPay * pfPer / 100;
+        double staffClub = basicPay * staffPer / 100;
+
+        double gross = basicPay + DA + HRA;
+        double net = gross - PF - staffClub;
+
+        System.out.println("\n------ PAY SLIP ------");
+        System.out.println("Employee Name : " + empName);
+        System.out.println("Employee ID : " + empId);
+        System.out.println("Address : " + address);
+        System.out.println("Mail ID : " + mailId);
+        System.out.println("Mobile No : " + mobileNo);
+        System.out.println("Basic Pay : " + basicPay);
+        System.out.println("DA : " + DA);
+        System.out.println("HRA : " + HRA);
+        System.out.println("PF : " + PF);
+        System.out.println("Staff Club : " + staffClub);
+        System.out.println("Gross Salary : " + gross);
+        System.out.println("Net Salary : " + net);
+    }
+}
+
+// Derived Classes
+class Programmer extends Employee {
+    Programmer(String n, int i, String a, String m, String mob, double bp) {
+        super(n, i, a, m, mob, bp);
+    }
+
+    void generateSlip() {
+        calculateSalary(97, 10, 12, 1);
+    }
+}
+
+class AssistantProfessor extends Employee {
+    AssistantProfessor(String n, int i, String a, String m, String mob, double bp) {
+        super(n, i, a, m, mob, bp);
+    }
+
+    void generateSlip() {
+        calculateSalary(110, 20, 12, 5);
+    }
+}
+
+class AssociateProfessor extends Employee {
+    AssociateProfessor(String n, int i, String a, String m, String mob, double bp) {
+        super(n, i, a, m, mob, bp);
+    }
+
+    void generateSlip() {
+        calculateSalary(130, 30, 12, 10);
+    }
+}
+
+class Professor extends Employee {
+    Professor(String n, int i, String a, String m, String mob, double bp) {
+        super(n, i, a, m, mob, bp);
+    }
+
+    void generateSlip() {
+        calculateSalary(140, 40, 12, 15);
+    }
+}
+
+// Main Class
+public class EmployeeSalary {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Employee Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Employee ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Address: ");
+        String address = sc.nextLine();
+
+        System.out.print("Enter Mail ID: ");
+        String mail = sc.nextLine();
+
+        System.out.print("Enter Mobile Number: ");
+        String mobile = sc.nextLine();
+
+        System.out.print("Enter Basic Pay: ");
+        double bp = sc.nextDouble();
+
+        System.out.println("\nSelect Designation");
+        System.out.println("1. Programmer");
+        System.out.println("2. Assistant Professor");
+        System.out.println("3. Associate Professor");
+        System.out.println("4. Professor");
+
+        System.out.print("Enter Choice: ");
+        int ch = sc.nextInt();
+
+        switch (ch) {
+            case 1:
+                Programmer p = new Programmer(name, id, address, mail, mobile, bp);
+                p.generateSlip();
+                break;
+
+            case 2:
+                AssistantProfessor ap = new AssistantProfessor(name, id, address, mail, mobile, bp);
+                ap.generateSlip();
+                break;
+
+            case 3:
+                AssociateProfessor asp = new AssociateProfessor(name, id, address, mail, mobile, bp);
+                asp.generateSlip();
+                break;
+
+            case 4:
+                Professor prof = new Professor(name, id, address, mail, mobile, bp);
+                prof.generateSlip();
+                break;
+
+            default:
+                System.out.println("Invalid Choice!");
+        }
+
+        sc.close();
+    }
+}
