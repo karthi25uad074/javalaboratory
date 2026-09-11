@@ -7,7 +7,7 @@ public class TravelManagement {
         int choice; 
         do { 
             System.out.println("\n===== Travel Management System ====="); 
-            System.out.println("1. Append a City"); 11
+            System.out.println("1. Append a City"); 
             System.out.println("2. Insert a City at Specific Position"); 
             System.out.println("3. Search for a City"); 
             System.out.println("4. Display Cities Starting with a Letter"); 
